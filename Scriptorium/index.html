@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scriptorium | Ipso Facto</title>
+  <meta
+    name="description"
+    content="Scriptorium by Ipso Facto is a practical writing suite for focused typing, structure, and optional AI assistance without the full autonomy and heavy systems of Magnum Opus."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --ink: #192636;
+      --muted: #5f6c79;
+      --line: rgba(25, 38, 54, 0.12);
+      --paper: rgba(255, 252, 247, 0.78);
+      --shadow: 0 24px 64px rgba(20, 34, 49, 0.12);
+      --gold: #c6a266;
+      --slate: #6f8096;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(198, 162, 102, 0.16), transparent 24%),
+        linear-gradient(180deg, #fcfaf5 0%, var(--bg) 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .page { width: min(1160px, calc(100% - 32px)); margin: 0 auto; padding: 20px 0 40px; }
+    .topbar, .footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .topbar { padding: 10px 0 28px; }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 700; }
+    .mark {
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+      background: linear-gradient(135deg, var(--gold), #e3c38b); color: #22180f;
+    }
+    .nav { display: inline-flex; gap: 20px; color: var(--muted); }
+    .hero { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 28px; align-items: center; min-height: calc(100vh - 110px); }
+    .eyebrow { margin: 0 0 12px; text-transform: uppercase; letter-spacing: 0.18em; font-size: .76rem; color: var(--gold); font-weight: 700; }
+    h1, h2 { margin: 0; font-family: "Cormorant Garamond", serif; font-weight: 600; letter-spacing: -.03em; line-height: .95; }
+    h1 { font-size: clamp(3.2rem, 7vw, 6.4rem); max-width: 9ch; }
+    h2 { font-size: clamp(2.3rem, 4vw, 4rem); }
+    p { color: var(--muted); line-height: 1.7; }
+    .hero-actions, .product-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .button, .link-button {
+      display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 16px;
+      border-radius: 999px; font-weight: 700; border: 1px solid var(--line); background: rgba(255,255,255,.62);
+    }
+    .button-primary { background: linear-gradient(135deg, var(--gold), #d9b372); color: #21170f; border: none; }
+    .panel, .card { background: var(--paper); border: 1px solid rgba(255,255,255,.72); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
+    .panel { padding: 18px; border-radius: 28px; }
+    .panel-inner { padding: 20px; border-radius: 20px; background: linear-gradient(180deg, #dde5ef 0%, #f8f3ea 100%); }
+    .editor-mock { display: grid; gap: 12px; }
+    .toolbar, .doc-panel, .side-panel { border-radius: 16px; background: rgba(255,255,255,.68); border: 1px solid rgba(25,38,54,.08); }
+    .toolbar { padding: 12px 14px; display: flex; gap: 10px; color: var(--slate); }
+    .editor-layout { display: grid; grid-template-columns: 1.15fr .85fr; gap: 12px; }
+    .doc-panel, .side-panel { padding: 16px; }
+    .doc-lines { display: grid; gap: 10px; margin-top: 10px; }
+    .doc-lines span { display: block; height: 10px; border-radius: 999px; background: linear-gradient(90deg, rgba(111,128,150,.35), rgba(198,162,102,.24)); }
+    .doc-lines span:nth-child(2){width:88%}.doc-lines span:nth-child(3){width:94%}.doc-lines span:nth-child(4){width:73%}.doc-lines span:nth-child(5){width:81%}
+    .section { padding-top: 88px; }
+    .section-head { max-width: 740px; margin-bottom: 26px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .card { padding: 22px; border-radius: 22px; }
+    .card h3 { margin: 0 0 10px; font-size: 1.24rem; }
+    .footer { border-top: 1px solid var(--line); padding: 28px 0 12px; margin-top: 84px; color: var(--muted); }
+    @media (max-width: 980px) { .hero, .grid-3, .editor-layout { grid-template-columns: 1fr; min-height: auto; } }
+    @media (max-width: 720px) { .page { width: min(100% - 20px, 1160px); } .topbar, .footer { flex-direction: column; align-items: flex-start; } .nav { flex-wrap: wrap; gap: 14px; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand"><div class="mark">S</div><span>Ipso Facto / Scriptorium</span></div>
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#fit">Who It Fits</a>
+        <a href="../index.html">Ipso Facto</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Practical Writing Suite</p>
+        <h1>Scriptorium is the straightforward writing environment.</h1>
+        <p>
+          If Magnum Opus is the fully loaded flagship, Scriptorium is the more approachable everyday suite:
+          a manual-first typing and drafting product with available AI help, but without the deeply integrated
+          autonomy, continuity machinery, and heavy systems of Opus.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#features">Explore Scriptorium</a>
+          <a class="button" href="../Magnum%20Opus/Magnum%20Opus.html">See Magnum Opus</a>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-inner">
+          <div class="editor-mock">
+            <div class="toolbar">Project · Chapters · Editor · Notes · Assist</div>
+            <div class="editor-layout">
+              <div class="doc-panel">
+                <strong>Manual-first drafting</strong>
+                <div class="doc-lines">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="side-panel">
+                <strong>Optional AI help</strong>
+                <p>Continue paragraph, rewrite, summarize, tighten, expand, or brainstorm without turning the product into a fully autonomous writing engine.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Features</p>
+        <h2>Less system, more direct writing flow.</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Focused Typing</h3>
+          <p>A cleaner writing surface for people who mainly want to write, edit, and organize text without a heavy command center around them.</p>
+        </article>
+        <article class="card">
+          <h3>Project Structure</h3>
+          <p>Chapters, notes, light outlining, and practical project organization without requiring a full story bible architecture.</p>
+        </article>
+        <article class="card">
+          <h3>Assist, Not Autonomy</h3>
+          <p>AI is available for targeted help like continuation, rewrite, cleanup, and ideation, but it is not the center of the product.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="fit" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Positioning</p>
+        <h2>For writers who want help without the full Magnum Opus machine.</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Different niche</h3>
+          <p>Scriptorium fits writers who want a dependable, direct, lower-friction drafting suite rather than a flagship narrative operating system.</p>
+        </article>
+        <article class="card">
+          <h3>Manual by default</h3>
+          <p>The product assumes the writer is still driving. AI is supportive and optional, not deeply fused into every layer.</p>
+        </article>
+        <article class="card">
+          <h3>Natural ladder</h3>
+          <p>It gives Ipso Facto a lighter writing product beneath Magnum Opus instead of forcing everyone into the premium flagship experience.</p>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© 2026 Ipso Facto</div>
+      <div><a href="../index.html">Company</a> · <a href="../Magnum%20Opus/Magnum%20Opus.html">Magnum Opus</a> · <a href="../NOTA/index.html">NOTA</a></div>
+    </footer>
+  </div>
+</body>
+</html>
