@@ -1,6 +1,0 @@
-/* Cloudflare Pages routing configuration */
-
-/* Ensure trailing slashes for product directories */
-/magnum-opus /magnum-opus/ 301
-/scriptorium /scriptorium/ 301
-/nota /nota/ 301
