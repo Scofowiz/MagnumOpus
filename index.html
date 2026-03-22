@@ -3,227 +3,224 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xray My Mac | Ipso Facto</title>
-  <meta
-    name="description"
-    content="Xray My Mac by Ipso Facto is a disk space reclaimer that finds duplicates with embeddings and reranking, clears caches, removes uninstalled-program leftovers, and helps reclaim storage safely."
-  >
+  <title>Ipso Facto | Writing & Voice Tools</title>
+  <meta name="description" content="Discover Ipso Facto's suite of professional writing and productivity tools: Magnum Opus for manuscript generation, Scriptorium for focused writing, and NOTA for voice capture.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0c11;
+      --ink: #f4efe8;
+      --muted: #b8ac9c;
+      --line: rgba(255, 255, 255, 0.08);
+      --gold: #c9a96a;
+      --mint: #1d8a84;
+      --coral: #ea7a55;
+      --slate: #6f8096;
+    }
+    
+    * { box-sizing: border-box; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #0b0910 0%, #121019 52%, #0d0c11 100%);
+    }
+    
+    a { color: inherit; text-decoration: none; }
+    
+    .page {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0 60px;
+    }
+    
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 20px 0 60px;
+      border-bottom: 1px solid var(--line);
+    }
+    
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--coral));
+      color: #1a1410;
+      font-weight: 700;
+    }
+    
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 60px 0;
+    }
+    
+    .hero-desc {
+      max-width: 680px;
+      margin: 0 auto 60px;
+      color: var(--muted);
+      font-size: 1.18rem;
+      line-height: 1.7;
+    }
+    
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 80px;
+    }
+    
+    .product-card {
+      padding: 32px;
+      border-radius: 24px;
+      background: rgba(23, 19, 32, 0.6);
+      border: 1px solid var(--line);
+      text-decoration: none;
+      transition: all 320ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .product-card:hover {
+      background: rgba(23, 19, 32, 0.9);
+      border-color: rgba(255, 255, 255, 0.16);
+      transform: translateY(-4px);
+    }
+    
+    .product-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    
+    .product-magnum .product-icon {
+      background: linear-gradient(135deg, rgba(201, 169, 106, 0.2), rgba(214, 114, 114, 0.2));
+      color: var(--gold);
+    }
+    
+    .product-scriptorium .product-icon {
+      background: linear-gradient(135deg, rgba(198, 162, 102, 0.2), rgba(111, 128, 150, 0.2));
+      color: #c6a266;
+    }
+    
+    .product-nota .product-icon {
+      background: linear-gradient(135deg, rgba(29, 138, 132, 0.2), rgba(234, 122, 85, 0.2));
+      color: #1d8a84;
+    }
+    
+    .product-card h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.6rem;
+      margin: 0;
+      color: var(--ink);
+    }
+    
+    .product-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+    
+    .product-card .cta {
+      margin-top: 12px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 160ms ease;
+      align-self: flex-start;
+    }
+    
+    .product-card:hover .cta {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.24);
+    }
+    
+    .footer {
+      text-align: center;
+      padding: 40px 0 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
-  <div class="page-shell">
-    <header class="hero">
-      <nav class="topbar">
-        <div class="brand">
-          <div class="brand-mark">MX</div>
-          <span>Ipso Facto / Xray My Mac</span>
-        </div>
-        <div class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#workflow">Workflow</a>
-          <a href="#safety">Safety</a>
-          <a href="#products">Products</a>
-        </div>
-      </nav>
-
-      <div class="hero-grid">
-        <section class="hero-copy">
-          <p class="eyebrow">Ipso Facto / macOS storage reclamation</p>
-          <h1>Xray My Mac shows what is worth removing before you touch the disk.</h1>
-          <p class="hero-text">
-            Xray My Mac is a disk space reclaimer. It finds duplicates with embeddings and reranking,
-            surfaces uninstall residue, clears caches, removes leftovers from uninstalled programs,
-            and gives you a storage map before cleanup.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#features">Explore Features</a>
-            <a class="button button-secondary" href="../index.html">Ipso Facto</a>
-          </div>
-          <ul class="hero-metrics">
-            <li>
-              <strong>4</strong>
-              <span>core cleanup workflows</span>
-            </li>
-            <li>
-              <strong>AI</strong>
-              <span>embeddings and reranking for duplicate discovery</span>
-            </li>
-            <li>
-              <strong>0</strong>
-              <span>blind deletes</span>
-            </li>
-          </ul>
-        </section>
-
-        <section class="hero-panel" aria-label="MacXray overview preview">
-          <div class="panel-window">
-            <div class="window-chrome">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="panel-content">
-              <div class="status-card large">
-                <p class="label">Live Analysis</p>
-                <p class="value">Analyzing your Mac...</p>
-                <div class="progress-track">
-                  <div class="progress-fill"></div>
-                </div>
-              </div>
-              <div class="panel-columns">
-                <div class="status-card">
-                  <p class="label">Duplicate Finder</p>
-                  <p class="value">127 findings</p>
-                  <p class="subtle">Embeddings, reranking, large, stale, orphaned</p>
-                </div>
-                <div class="status-card">
-                  <p class="label">Cleanup Actions</p>
-                  <p class="value">19 clusters</p>
-                  <p class="subtle">Caches, leftovers, uninstall residue, reclaim groups</p>
-                </div>
-              </div>
-              <div class="map-card">
-                <div class="map-ring map-ring-a"></div>
-                <div class="map-ring map-ring-b"></div>
-                <div class="map-ring map-ring-c"></div>
-                <div class="map-core">Storage Map</div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">IF</div>
+        <span>Ipso Facto</span>
       </div>
     </header>
-
-    <main>
-      <section id="features" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">What it does</p>
-          <h2>Reclaim storage with duplicate finding, uninstall cleanup, caches, and visual inspection.</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Disk Space Reclaimer</h3>
-            <p>Find large, stale, and low-value files before they continue eating into local storage.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Duplicate Finder</h3>
-            <p>Uses embeddings and reranking to surface duplicates and near-duplicates more intelligently than naive filename matching.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Cache and Leftover Cleanup</h3>
-            <p>Clears caches, removes app leftovers, and targets residue from uninstalled programs with review-first cleanup flows.</p>
-          </article>
-          <article class="feature-card">
-            <h3>Uninstall Cleanup</h3>
-            <p>Find installed apps together with support files, containers, caches, and uninstall residue that usually gets left behind.</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="workflow" class="section split-section">
-        <div class="split-copy">
-          <p class="eyebrow">How it works</p>
-          <h2>One analysis pass, several ways to reclaim space.</h2>
-          <p>
-            Xray My Mac shares scan data across duplicate discovery, storage visualization,
-            uninstall cleanup, and targeted reclaim flows so the app does not keep repeating the same disk walk.
-          </p>
-          <ol class="steps">
-            <li>Scan once and build the file inventory.</li>
-            <li>Use embeddings and reranking to prioritize the best duplicate and cleanup targets.</li>
-            <li>Inspect the storage map and uninstall residue before acting.</li>
-            <li>Clear caches, duplicates, and leftovers through a shared safety pipeline.</li>
-          </ol>
-        </div>
-        <div class="workflow-rail">
-          <div class="workflow-item">
-            <span>01</span>
-            <div>
-              <h3>Scan</h3>
-              <p>Shared filesystem analysis builds one inventory for the product.</p>
-            </div>
-          </div>
-          <div class="workflow-item">
-            <span>02</span>
-            <div>
-              <h3>Rerank</h3>
-              <p>Embeddings and reranking help bring the most meaningful duplicates and reclaim candidates forward.</p>
-            </div>
-          </div>
-          <div class="workflow-item">
-            <span>03</span>
-            <div>
-              <h3>Review</h3>
-              <p>Inspect storage maps, leftovers, uninstall residue, and caches before cleanup.</p>
-            </div>
-          </div>
-          <div class="workflow-item">
-            <span>04</span>
-            <div>
-              <h3>Reclaim</h3>
-              <p>Cleanup is routed through policy-driven infrastructure instead of impulse deletion.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="safety" class="section safety-section">
-        <div class="section-heading">
-          <p class="eyebrow">Why it feels safer</p>
-          <h2>Built to reclaim disk space without pretending every file should be deleted.</h2>
-        </div>
-        <div class="safety-grid">
-          <div class="safety-card">
-            <h3>Permission-aware</h3>
-            <p>Supports Full Disk Access onboarding and limited mode fallback for accessible-folder scans.</p>
-          </div>
-          <div class="safety-card">
-            <h3>Policy-driven cleanup</h3>
-            <p>Protected paths and risky candidates are evaluated before execution.</p>
-          </div>
-          <div class="safety-card">
-            <h3>Recovery-friendly</h3>
-            <p>Cleanup actions are tracked so restore-capable workflows are possible.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="products" class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Ipso Facto Products</p>
-          <h2>One company, four distinct products.</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature-card">
-            <h3>Xray My Mac</h3>
-            <p>The storage reclamation product for duplicates, caches, uninstall residue, and disk inspection.</p>
-            <p><a href="../index.html">Company page</a></p>
-          </article>
-          <article class="feature-card">
-            <h3>Magnum Opus</h3>
-            <p>The heavy-duty flagship writing product with full systems for continuity, generation, and manuscript-scale work.</p>
-            <p><a href="../Magnum%20Opus/Magnum%20Opus.html">Open product page</a></p>
-          </article>
-          <article class="feature-card">
-            <h3>Scriptorium</h3>
-            <p>The more straightforward manual-first writing suite with optional AI help and a lighter footprint than Magnum Opus.</p>
-            <p><a href="../Scriptorium/index.html">Open product page</a></p>
-          </article>
-          <article class="feature-card">
-            <h3>NOTA</h3>
-            <p>The voice-driven capture product: voice notes, transcription, and spoken-thought organization.</p>
-            <p><a href="../NOTA/index.html">Open product page</a></p>
-          </article>
-        </div>
-      </section>
-    </main>
-
+    
+    <section class="hero">
+      <h1>Professional Writing & Productivity Tools</h1>
+      <p class="hero-desc">
+        A suite of specialized applications for writers, thinkers, and creators who demand precision, depth, and seamless workflows.
+      </p>
+      
+      <div class="products">
+        <a href="./magnum-opus/" class="product-card product-magnum">
+          <div class="product-icon">📖</div>
+          <h2>Magnum Opus</h2>
+          <p>The flagship heavy-duty writing environment with deep planning, continuity tracking, and manuscript-scale text generation.</p>
+          <span class="cta">Explore →</span>
+        </a>
+        
+        <a href="./scriptorium/" class="product-card product-scriptorium">
+          <div class="product-icon">✍️</div>
+          <h2>Scriptorium</h2>
+          <p>Practical writing suite for focused typing, structural organization, and optional AI assistance without heavyweight systems.</p>
+          <span class="cta">Explore →</span>
+        </a>
+        
+        <a href="./nota/" class="product-card product-nota">
+          <div class="product-icon">🎙️</div>
+          <h2>NOTA</h2>
+          <p>Voice-driven capture tool for talking ideas out, organizing notes, and transforming spoken fragments into usable text.</p>
+          <span class="cta">Explore →</span>
+        </a>
+      </div>
+    </section>
+    
     <footer class="footer">
-      <p>Xray My Mac is an Ipso Facto product for disk reclamation, duplicate finding, cache clearing, and uninstall cleanup.</p>
-      <a href="../index.html">Ipso Facto</a>
+      <p>&copy; 2024 Ipso Facto. All rights reserved.</p>
     </footer>
   </div>
 </body>
