@@ -1,6 +1,4 @@
-/magnum-opus /magnum-opus/index.html 200
+/* Directory to index.html rewrites */
 /magnum-opus/ /magnum-opus/index.html 200
-/scriptorium /scriptorium/index.html 200
 /scriptorium/ /scriptorium/index.html 200
-/nota /nota/index.html 200
 /nota/ /nota/index.html 200
