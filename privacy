@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | ipsofcto.scottandrewfoster.com</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #fdfdfd;
+        }
+        h1, h2 { color: #111; }
+        header { border-bottom: 2px solid #eee; margin-bottom: 30px; padding-bottom: 20px; }
+        footer { margin-top: 50px; font-size: 0.9em; color: #666; border-top: 1px solid #eee; padding-top: 20px; }
+        .business-tag { font-weight: bold; color: #0070f3; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Privacy Policy</h1>
+    <p><strong>Effective Date:</strong> April 11, 2026</p>
+    <p><strong>Domain:</strong> ipsofcto.scottandrewfoster.com</p>
+</header>
+
+<main>
+    <p>Welcome to <strong>ipsofcto.scottandrewfoster.com</strong>. Your privacy is a priority. This policy outlines how we handle data across our ventures, including <span class="business-tag">FosCo LLC</span>, <strong>Sluff Monster</strong>, and <strong>AI Death Match</strong>.</p>
+
+    <h2>1. Information Collection</h2>
+    <p>We collect information to provide better services to our users, specifically:</p>
+    <ul>
+        <li><strong>Direct Input:</strong> Information you provide when purchasing Sluff Monster products (Foo, Kne, El, Boddie) or registering for AI Death Match.</li>
+        <li><strong>Secure Payments:</strong> Financial transactions are handled via encrypted third-party processors like Mercury or PayPal. We do not store full credit card numbers on our servers.</li>
+    </ul>
+
+    <h2>2. Use of Data</h2>
+    <p>The information we collect is used to:</p>
+    <ul>
+        <li>Fulfill e-commerce orders and manage shipping logistics via TikTok Shop or Printful.</li>
+        <li>Optimize the high-concurrency performance of the AI Death Match prediction engine.</li>
+        <li>Provide technical support for smart home lighting installations under FosCo LLC.</li>
+    </ul>
+
+    <h2>3. Third-Party Services</h2>
+    <p>We may share limited data with trusted partners necessary for operation, such as:</p>
+    <ul>
+        <li><strong>Infrastructure:</strong> Cloudflare (hosting and security).</li>
+        <li><strong>Fulfillment:</strong> Print-on-demand services for custom designs.</li>
+    </ul>
+
+    <h2>4. Digital Sovereignty</h2>
+    <p>In line with our philosophy of intentional and sovereign digital presence, you have the right to request a copy of your data or ask for its permanent deletion at any time.</p>
+
+    <h2>5. Contact</h2>
+    <p>For legal inquiries or data requests, please contact the administration in Louisville, KY.</p>
+</main>
+
+<footer>
+    <p>&copy; 2026 FosCo LLC. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
