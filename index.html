@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnum Opus | Ipso Facto</title>
+  <meta
+    name="description"
+    content="Magnum Opus by Ipso Facto is the flagship heavy-duty writing environment with deep planning, continuity, and manuscript-scale generation."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0c11;
+      --bg-2: #15121d;
+      --panel: rgba(23, 19, 32, 0.82);
+      --panel-2: rgba(255, 255, 255, 0.04);
+      --ink: #f4efe8;
+      --muted: #b8ac9c;
+      --line: rgba(255, 255, 255, 0.08);
+      --gold: #c9a96a;
+      --rose: #d67272;
+      --violet: #7c6bd6;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      --sky-top: #0b0910;
+      --sky-mid: #121019;
+      --sky-bottom: #0d0c11;
+      --sun-glow: rgba(201, 169, 106, 0.10);
+      --weather-haze: rgba(124, 107, 214, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Space Grotesk", sans-serif;
+      background:
+        radial-gradient(circle at 18% 16%, var(--sun-glow), transparent 24%),
+        radial-gradient(circle at top left, rgba(214, 114, 114, 0.16), transparent 26%),
+        radial-gradient(circle at top right, var(--weather-haze), transparent 28%),
+        linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 52%, var(--sky-bottom) 100%);
+      transition: background 900ms ease, color 600ms ease;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      width: min(1200px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 20px 0 48px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 10px 0 26px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--rose));
+      color: #1a1410;
+      font-weight: 700;
+      box-shadow: 0 16px 40px rgba(201, 169, 106, 0.22);
+    }
+
+    .brand-copy strong,
+    .footer-brand strong {
+      display: block;
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-copy span,
+    .footer-brand span {
+      color: var(--muted);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: inline-flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+      min-height: calc(100vh - 110px);
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      font-size: 0.76rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    h1, h2 {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: -0.03em;
+    }
+
+    h1 {
+      font-size: clamp(3.4rem, 8vw, 7rem);
+      line-height: 0.92;
+      max-width: 8.8ch;
+    }
+
+    h2 {
+      font-size: clamp(2.4rem, 4.2vw, 4.3rem);
+      line-height: 0.95;
+    }
+
+    .hero p,
+    .section p,
+    .card p,
+    .timeline p,
+    .footer {
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-copy > p:last-of-type {
+      max-width: 58ch;
+      margin: 22px 0 0;
+      font-size: 1.03rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--gold), #e5c07a);
+      color: #1a1410;
+      box-shadow: 0 18px 40px rgba(201, 169, 106, 0.18);
+    }
+
+    .button-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--ink);
+    }
+
+    .hero-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      list-style: none;
+      margin: 34px 0 0;
+      padding: 0;
+    }
+
+    .hero-notes li,
+    .card,
+    .timeline-item,
+    .showcase {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-notes li {
+      padding: 16px;
+      border-radius: 18px;
+    }
+
+    .hero-notes strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.55rem;
+      color: var(--ink);
+    }
+
+    .showcase {
+      padding: 18px;
+      border-radius: 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .showcase::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(201, 169, 106, 0.16), transparent 24%),
+        radial-gradient(circle at 80% 22%, rgba(124, 107, 214, 0.18), transparent 26%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent);
+      pointer-events: none;
+    }
+
+    .sky-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      color: #e7d9c1;
+      font-size: 0.84rem;
+    }
+
+    .showcase-inner {
+      position: relative;
+      z-index: 1;
+      padding: 22px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(12, 11, 18, 0.84), rgba(19, 15, 27, 0.94)),
+        var(--bg-2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .window-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .window-bar span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .line-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(201, 169, 106, 0.08);
+      color: #e8d5ac;
+      border: 1px solid rgba(201, 169, 106, 0.16);
+      font-size: 0.82rem;
+      margin-bottom: 18px;
+    }
+
+    .manuscript {
+      display: grid;
+      gap: 14px;
+    }
+
+    .manuscript-panel {
+      padding: 16px;
+      border-radius: 18px;
+      background: var(--panel-2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .manuscript-panel strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 0.95rem;
+    }
+
+    .sample-lines {
+      display: grid;
+      gap: 8px;
+    }
+
+    .sample-lines span {
+      display: block;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(201, 169, 106, 0.54), rgba(124, 107, 214, 0.24));
+    }
+
+    .sample-lines span:nth-child(2) { width: 88%; }
+    .sample-lines span:nth-child(3) { width: 92%; }
+    .sample-lines span:nth-child(4) { width: 74%; }
+    .sample-lines span:nth-child(5) { width: 81%; }
+
+    .section {
+      padding-top: 92px;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 28px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      color: var(--ink);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .demo-shell {
+      padding: 18px;
+      border-radius: 30px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .demo-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .demo-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+    }
+
+    .demo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(201, 169, 106, 0.12);
+    }
+
+    .demo-brand span {
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #efd9aa;
+      background: rgba(201, 169, 106, 0.08);
+      border: 1px solid rgba(201, 169, 106, 0.14);
+    }
+
+    .demo-tabs,
+    .tone-pills,
+    .quick-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .demo-tab,
+    .tone-pill,
+    .quick-action,
+    .project-card {
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
+    }
+
+    .demo-tab,
+    .tone-pill,
+    .quick-action {
+      padding: 9px 12px;
+      border-radius: 12px;
+    }
+
+    .demo-tab.is-active,
+    .tone-pill.is-active {
+      background: rgba(201, 169, 106, 0.12);
+      border-color: rgba(201, 169, 106, 0.28);
+      color: #f0ddb3;
+    }
+
+    .demo-panel {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .demo-panel.is-active {
+      display: block;
+    }
+
+    .demo-project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .project-card {
+      text-align: left;
+      padding: 18px;
+      border-radius: 18px;
+      min-height: 140px;
+    }
+
+    .project-card strong,
+    .project-card span,
+    .project-card em {
+      display: block;
+    }
+
+    .project-card strong { margin-bottom: 8px; color: var(--ink); }
+    .project-card span { margin-bottom: 10px; color: var(--muted); }
+    .project-card em { color: #948370; font-style: normal; font-size: 0.92rem; }
+
+    .project-card.is-selected {
+      background: rgba(201, 169, 106, 0.1);
+      border-color: rgba(201, 169, 106, 0.26);
+    }
+
+    .demo-bible {
+      display: grid;
+      gap: 14px;
+    }
+
+    .demo-bible-card,
+    .editor-main,
+    .editor-sidebar,
+    .draft-review {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .demo-bible-card label,
+    .control-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      color: #ecd6ab;
+      font-weight: 700;
+    }
+
+    .demo-field {
+      color: var(--ink);
+      line-height: 1.7;
+    }
+
+    .demo-bible-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .demo-chip {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(124, 107, 214, 0.12);
+      border: 1px solid rgba(124, 107, 214, 0.18);
+      color: #d4cdf6;
+      font-size: 0.86rem;
+    }
+
+    .editor-layout {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 16px;
+    }
+
+    .editor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .editor-body {
+      min-height: 260px;
+      white-space: pre-line;
+      line-height: 1.78;
+      color: var(--ink);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.28rem;
+    }
+
+    .draft-review {
+      margin-top: 14px;
+    }
+
+    .draft-review strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .control-group {
+      margin-bottom: 14px;
+    }
+
+    .control-group textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .control-group input[type="range"] {
+      width: 100%;
+    }
+
+    .control-group textarea {
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .demo-generate {
+      width: 100%;
+      min-height: 48px;
+      border: none;
+      border-radius: 14px;
+      font: inherit;
+      font-weight: 700;
+      color: #1a1410;
+      background: linear-gradient(135deg, var(--gold), #e5c07a);
+      cursor: pointer;
+      box-shadow: 0 16px 36px rgba(201, 169, 106, 0.18);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 16px;
+      padding: 20px;
+      border-radius: 22px;
+    }
+
+    .timeline-item .step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(201, 169, 106, 0.18), rgba(124, 107, 214, 0.18));
+      color: #eed4a0;
+      font-weight: 700;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 104px 0 24px;
+    }
+
+    .cta p {
+      max-width: 52ch;
+      margin: 16px auto 30px;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 28px 0 12px;
+      border-top: 1px solid var(--line);
+      font-size: 0.95rem;
+    }
+
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 7px;
+      background: linear-gradient(135deg, var(--gold), var(--rose));
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .grid-3,
+      .split,
+      .demo-project-grid,
+      .editor-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 10px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 20px, 1200px);
+      }
+
+      .topbar,
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero-notes {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">IF</div>
+        <div class="brand-copy">
+          <strong>IpsoFacto</strong>
+          <span>Flagship Writing Product</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#positioning">Positioning</a>
+        <a href="../index.html">Ipso Facto</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Ipso Facto / Flagship Writing</p>
+        <h1>Magnum Opus is the heavy-duty writing system.</h1>
+        <p>
+          Magnum Opus is the Cadillac product in the lineup: the flagship environment for serious long-form writing,
+          deep story systems, style continuity, continuity checking, generation workflows, and manuscript-scale control.
+          It is the full machine, not the lightweight suite.
+        </p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#features">Explore Magnum Opus</a>
+          <a class="button button-secondary" href="../index.html">Ipso Facto</a>
+        </div>
+        <div class="sky-status">
+          <span id="sky-phase">Syncing ambient sky…</span>
+        </div>
+        <ul class="hero-notes">
+          <li>
+            <strong>IpsoFacto</strong>
+            <span>Company name across both products</span>
+          </li>
+          <li>
+            <strong>Heavy Duty</strong>
+            <span>Integrated systems, continuity, generation, and full workflow control</span>
+          </li>
+          <li>
+            <strong>Magnum Opus</strong>
+            <span>Flagship writing environment</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="showcase" aria-label="Magnum Opus product preview">
+        <div class="showcase-inner">
+          <div class="window-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="line-badge">IpsoFacto / Magnum Opus / Flagship</div>
+          <div class="manuscript">
+            <div class="manuscript-panel">
+              <strong>Story Bible</strong>
+              <p>Characters, themes, world logic, scenes, and continuity live in one structured narrative workspace.</p>
+            </div>
+            <div class="manuscript-panel">
+              <strong>Chapter Engine</strong>
+              <p>Generate scenes and full chapters without losing voice, chronology, or character intent.</p>
+            </div>
+            <div class="manuscript-panel">
+              <strong>Sample Manuscript</strong>
+              <div class="sample-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Features</p>
+        <h2>Everything needed to move from premise to manuscript.</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Story Bible</h3>
+          <p>Define characters, setting logic, plot threads, tone, and reference material in a form the writing system can keep coherent across the book.</p>
+        </article>
+        <article class="card">
+          <h3>Long-Form Drafting</h3>
+          <p>Generate scenes and chapters with continuity-aware assistance aimed at manuscripts rather than disconnected prompt fragments.</p>
+        </article>
+        <article class="card">
+          <h3>Voice Retention</h3>
+          <p>Use style samples and project context to keep prose direction consistent as the manuscript grows.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Interactive Sample</p>
+        <h2>A lightweight Magnum Opus interaction, not just static marketing copy.</h2>
+        <p>
+          This demo borrows from the actual product structure: projects, a story bible,
+          chapter-level generation, style fingerprinting, and draft review before text lands in the manuscript.
+        </p>
+      </div>
+
+      <div class="demo-shell">
+        <div class="demo-topbar">
+          <div class="demo-brand">
+            <div class="demo-dot"></div>
+            <strong>Magnum Opus</strong>
+            <span>AI</span>
+          </div>
+          <div class="demo-tabs">
+            <button class="demo-tab is-active" data-panel="projects">Projects</button>
+            <button class="demo-tab" data-panel="bible">Story Bible</button>
+            <button class="demo-tab" data-panel="editor">Editor</button>
+          </div>
+        </div>
+
+        <div class="demo-panel is-active" data-panel-content="projects">
+          <div class="demo-project-grid">
+            <button class="project-card is-selected" type="button">
+              <strong>The Master and Margarita+</strong>
+              <span>Biopunk / dystopian noir</span>
+              <em>1,996 words · 1 chapter · Bible attached</em>
+            </button>
+            <button class="project-card" type="button">
+              <strong>The Leviathan</strong>
+              <span>Science-fiction</span>
+              <em>12,688 words · 28 chapters</em>
+            </button>
+            <button class="project-card" type="button">
+              <strong>Thesis</strong>
+              <span>Nonfiction</span>
+              <em>31 words · Structure only</em>
+            </button>
+          </div>
+        </div>
+
+        <div class="demo-panel" data-panel-content="bible">
+          <div class="demo-bible">
+            <div class="demo-bible-card">
+              <label>Logline</label>
+              <div class="demo-field">
+                In a hyper-corporate Moscow, a dissident writer hides an illegal manuscript while algorithmic censors close in.
+              </div>
+            </div>
+            <div class="demo-bible-card">
+              <label>Synopsis</label>
+              <div class="demo-field">
+                The Master and Margarita move through an occupied city of drones, black-market implants, and sanctified surveillance while trying to keep a forbidden text alive.
+              </div>
+            </div>
+            <div class="demo-bible-meta">
+              <div class="demo-chip">Genre: biopunk / dystopian thriller</div>
+              <div class="demo-chip">Tone: cyber-gothic noir</div>
+              <div class="demo-chip">POV: close third</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-panel" data-panel-content="editor">
+          <div class="editor-layout">
+            <div class="editor-main">
+              <div class="editor-header">
+                <strong>Chapter 1</strong>
+                <span id="demo-word-count">500 words target</span>
+              </div>
+              <div class="editor-body" id="demo-output">
+                The Master's fingers trembled against the haptic rail as the building's surveillance halo combed the windows. Somewhere below, a patrol drone translated prayer into metadata and sent it upward for deletion.
+              </div>
+              <div class="draft-review">
+                <strong>Draft Review</strong>
+                <p id="demo-review-note">Pending draft is continuity-safe and aligned to the active tone profile.</p>
+              </div>
+            </div>
+
+            <aside class="editor-sidebar">
+              <div class="control-group">
+                <label for="demo-prompt">Scene instruction</label>
+                <textarea id="demo-prompt">Write a tense confrontation scene where Margarita arrives with dangerous news and the manuscript becomes a liability.</textarea>
+              </div>
+
+              <div class="control-group">
+                <label for="demo-words">Target words</label>
+                <input id="demo-words" type="range" min="300" max="1200" step="100" value="500">
+              </div>
+
+              <div class="control-group">
+                <label>Style fingerprint</label>
+                <div class="tone-pills">
+                  <button class="tone-pill is-active" type="button" data-tone="noir">Cyber-Gothic Noir</button>
+                  <button class="tone-pill" type="button" data-tone="literary">Literary</button>
+                  <button class="tone-pill" type="button" data-tone="thriller">Tense Thriller</button>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label>Quick actions</label>
+                <div class="quick-actions">
+                  <button class="quick-action" type="button" data-insert="Emphasize interiority and moral dread.">Thoughts</button>
+                  <button class="quick-action" type="button" data-insert="Raise the tension through a sudden interruption.">Tension</button>
+                  <button class="quick-action" type="button" data-insert="Add dialogue that reveals shared history.">Dialogue</button>
+                  <button class="quick-action" type="button" data-insert="Bridge smoothly from the previous scene.">Transition</button>
+                </div>
+              </div>
+
+              <button class="demo-generate" id="demo-generate" type="button">Generate Scene</button>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section split">
+      <div>
+        <p class="eyebrow">Workflow</p>
+        <h2>A writing pipeline designed for serious narrative work.</h2>
+        <p>
+          Magnum Opus is positioned less like a generic AI prompt box and more like a structured composition environment.
+          The emphasis is continuity, planning, and manuscript-scale output.
+        </p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="step">01</div>
+          <div>
+            <h3>Build the project canon</h3>
+            <p>Define the world, cast, stakes, tone, and structural intentions.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="step">02</div>
+          <div>
+            <h3>Generate with continuity</h3>
+            <p>Draft scenes and chapters against the story bible instead of from isolated prompts.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="step">03</div>
+          <div>
+            <h3>Refine into manuscript form</h3>
+            <p>Review tone, pacing, and narrative alignment as the project moves toward a finished book.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="positioning" class="section">
+      <div class="section-head">
+        <p class="eyebrow">Brand Positioning</p>
+        <h2>The writing ladder is now clearer.</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card">
+          <h3>Company</h3>
+          <p><strong>IpsoFacto</strong> is the company name for both products.</p>
+        </article>
+        <article class="card">
+          <h3>Mid-Tier Product</h3>
+          <p><strong>Scriptorium</strong> is the more straightforward manual-first writing suite with optional AI help.</p>
+        </article>
+        <article class="card">
+          <h3>Flagship Product</h3>
+          <p><strong>Magnum Opus</strong> is the top-end fully integrated writing system.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta">
+      <p class="eyebrow">IpsoFacto / Magnum Opus</p>
+      <h2>Magnum Opus is where the manuscript happens.</h2>
+      <p>
+        The product architecture is now clearer: Magnum Opus is the full flagship,
+        Scriptorium is the more accessible writing suite, and NOTA covers voice capture.
+      </p>
+      <a class="button button-primary" href="#top">Return to Top</a>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-brand">
+        <div class="footer-mark"></div>
+        <div>
+          <strong>IpsoFacto</strong>
+          <span>Magnum Opus / Flagship</span>
+        </div>
+      </div>
+      <div>© 2026 IpsoFacto. <a href="../Scriptorium/index.html">Scriptorium</a> · <a href="../NOTA/index.html">NOTA</a> · <a href="../index.html">Company</a></div>
+    </footer>
+  </div>
+<script>
+  const skyPhase = document.getElementById("sky-phase");
+  const demoTabs = document.querySelectorAll(".demo-tab");
+  const demoPanels = document.querySelectorAll("[data-panel-content]");
+  const tonePills = document.querySelectorAll(".tone-pill");
+  const quickActions = document.querySelectorAll(".quick-action");
+  const promptField = document.getElementById("demo-prompt");
+  const generateButton = document.getElementById("demo-generate");
+  const output = document.getElementById("demo-output");
+  const reviewNote = document.getElementById("demo-review-note");
+  const wordCount = document.getElementById("demo-word-count");
+  const wordSlider = document.getElementById("demo-words");
+
+  const samples = {
+    noir: {
+      text: `The Master's fingers trembled against the haptic rail as the building's surveillance halo combed the windows. Somewhere below, a patrol drone translated prayer into metadata and sent it upward for deletion.
+
+Margarita entered without knocking. Rain hissed from the hem of her coat. The room seemed to contract around her, as if the walls already knew she had brought catastrophic news.
+
+"They found the backup lattice," she said. Her voice carried the calm of someone who had already survived the worst part. "Not the manuscript itself. The routes to it."
+
+He looked toward the hidden compartment in the stove and understood, all at once, that the book had ceased to be a document. It was now an accusation with weight, shape, and body count.`,
+      review: "Five-pass continuity check cleared. Tone profile matched: cyber-gothic noir. Relationship state stable."
+    },
+    literary: {
+      text: `When Margarita stepped into the apartment, the room altered around her in the small, humiliating ways rooms do when they have been waiting for bad news. The kettle was still warm. The window was still cracked open to the bruised light. Nothing had changed except the meaning of everything inside it.
+
+She set her gloves on the table with deliberate care. The Master watched her do it and thought, absurdly, that only a person carrying ruin would move that gently.
+
+"You have to move the pages tonight," she said.
+
+He did not answer at first. His life had narrowed, over the past year, into a few rituals: hiding the manuscript, revising the manuscript, imagining the world that might deserve the manuscript. Now even those rituals seemed borrowed, already in the process of being repossessed.`,
+      review: "Draft review flagged as strong on interiority and voice retention. No bible contradictions detected."
+    },
+    thriller: {
+      text: `The door hit the wall hard enough to rattle the dishes.
+
+Margarita crossed the room in three steps, stripped a data wafer from the lining of her coat, and dropped it into his hand. "Do not connect that to anything in this building."
+
+The Master stared at her. "Who followed you?"
+
+"Everyone worth fearing."
+
+Outside, a surveillance drone pivoted so sharply that its searchlight flashed across the ceiling. The manuscript was hidden behind a false panel, but hiding it suddenly felt childish. If the wafer contained what she implied, then the danger was no longer discovery. It was timing.`,
+      review: "Continuity-safe draft with elevated tension. Suggested next pass: add dialogue beat and transition hook."
+    }
+  };
+
+  function applyAmbientTheme(phase, weatherLabel) {
+    const root = document.documentElement;
+    const themes = {
+      dawn: {
+        top: "#281827",
+        mid: "#5a4367",
+        bottom: "#d2a07d",
+        sun: "rgba(245, 186, 117, 0.22)",
+        haze: "rgba(214, 114, 114, 0.16)"
+      },
+      day: {
+        top: "#779ed7",
+        mid: "#aac2e8",
+        bottom: "#f0e3d1",
+        sun: "rgba(255, 236, 180, 0.26)",
+        haze: "rgba(124, 107, 214, 0.08)"
+      },
+      dusk: {
+        top: "#2a1c35",
+        mid: "#6d5575",
+        bottom: "#d19d7a",
+        sun: "rgba(239, 158, 107, 0.20)",
+        haze: "rgba(124, 107, 214, 0.18)"
+      },
+      night: {
+        top: "#0b0910",
+        mid: "#121019",
+        bottom: "#0d0c11",
+        sun: "rgba(201, 169, 106, 0.08)",
+        haze: "rgba(124, 107, 214, 0.12)"
+      }
+    };
+
+    const weatherAdjustments = {
+      clear: { haze: "rgba(124, 107, 214, 0.08)" },
+      cloudy: { haze: "rgba(184, 172, 156, 0.18)" },
+      rain: { haze: "rgba(86, 115, 160, 0.22)" },
+      snow: { haze: "rgba(214, 226, 255, 0.20)" },
+      storm: { haze: "rgba(88, 92, 138, 0.26)" },
+      fog: { haze: "rgba(208, 205, 214, 0.22)" }
+    };
+
+    const base = themes[phase] || themes.night;
+    const weather = weatherAdjustments[weatherLabel] || weatherAdjustments.clear;
+
+    root.style.setProperty("--sky-top", base.top);
+    root.style.setProperty("--sky-mid", base.mid);
+    root.style.setProperty("--sky-bottom", base.bottom);
+    root.style.setProperty("--sun-glow", base.sun);
+    root.style.setProperty("--weather-haze", weather.haze);
+
+    skyPhase.textContent = `${phase[0].toUpperCase() + phase.slice(1)} ambience${weatherLabel ? " · " + weatherLabel : ""}`;
+  }
+
+  function localPhase(date = new Date()) {
+    const hour = date.getHours() + date.getMinutes() / 60;
+    if (hour >= 5 && hour < 8) return "dawn";
+    if (hour >= 8 && hour < 17) return "day";
+    if (hour >= 17 && hour < 20) return "dusk";
+    return "night";
+  }
+
+  function classifyWeather(code) {
+    if ([0, 1].includes(code)) return "clear";
+    if ([2, 3].includes(code)) return "cloudy";
+    if ([45, 48].includes(code)) return "fog";
+    if ([51, 53, 55, 56, 57, 61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return "rain";
+    if ([71, 73, 75, 77, 85, 86].includes(code)) return "snow";
+    if ([95, 96, 99].includes(code)) return "storm";
+    return "clear";
+  }
+
+  function syncAmbientSky() {
+    const phase = localPhase();
+    applyAmbientTheme(phase, "");
+
+    if (!("geolocation" in navigator)) {
+      skyPhase.textContent = `${phase[0].toUpperCase() + phase.slice(1)} ambience · local time`;
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      try {
+        const { latitude, longitude } = position.coords;
+        const response = await fetch(
+          `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=weather_code&forecast_days=1`
+        );
+        if (!response.ok) throw new Error("weather unavailable");
+        const data = await response.json();
+        const weatherLabel = classifyWeather(data?.current?.weather_code);
+        applyAmbientTheme(phase, weatherLabel);
+      } catch {
+        skyPhase.textContent = `${phase[0].toUpperCase() + phase.slice(1)} ambience · local time`;
+      }
+    }, () => {
+      skyPhase.textContent = `${phase[0].toUpperCase() + phase.slice(1)} ambience · local time`;
+    }, {
+      enableHighAccuracy: false,
+      timeout: 4000,
+      maximumAge: 900000
+    });
+  }
+
+  demoTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      demoTabs.forEach((item) => item.classList.remove("is-active"));
+      demoPanels.forEach((panel) => panel.classList.remove("is-active"));
+      tab.classList.add("is-active");
+      document.querySelector(`[data-panel-content="${tab.dataset.panel}"]`)?.classList.add("is-active");
+    });
+  });
+
+  tonePills.forEach((pill) => {
+    pill.addEventListener("click", () => {
+      tonePills.forEach((item) => item.classList.remove("is-active"));
+      pill.classList.add("is-active");
+    });
+  });
+
+  quickActions.forEach((button) => {
+    button.addEventListener("click", () => {
+      const addition = button.dataset.insert;
+      promptField.value = `${promptField.value.trim()} ${addition}`.trim();
+    });
+  });
+
+  wordSlider.addEventListener("input", () => {
+    wordCount.textContent = `${wordSlider.value} words target`;
+  });
+
+  generateButton.addEventListener("click", () => {
+    const activeTone = document.querySelector(".tone-pill.is-active")?.dataset.tone || "noir";
+    const sample = samples[activeTone];
+    output.textContent = sample.text;
+    reviewNote.textContent = sample.review;
+  });
+
+  syncAmbientSky();
+</script>
+</body>
+</html>
